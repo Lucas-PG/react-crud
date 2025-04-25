@@ -1,43 +1,57 @@
 import { db } from "../db.js";
 
-export const getUsers = async (_, res) => {
+export const getBooks = async (_, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM users");
+    const [rows] = await db.query("SELECT * FROM books");
     return res.status(200).json(rows);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
 };
 
-export const addUser = async (req, res) => {
+export const addBook = async (req, res) => {
   try {
-    const { name, age, cpf } = req.body;
+    const { title, author, year_published, language, pages } = req.body;
     const [result] = await db.query(
-      "INSERT INTO users (name, age, cpf) VALUES (?, ?, ?)",
-      [name, age, cpf],
+      "INSERT INTO books (title, author, year_published, language, pages) VALUES (?, ?, ?, ?, ?)",
+      [title, author, year_published, language, pages],
     );
-    return res.status(200).json({ id: result.insertId, name, age, cpf });
+    return res.status(200).json({
+      id: result.insertId,
+      title,
+      author,
+      year_published,
+      language,
+      pages,
+    });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
 };
 
-export const updateUser = async (req, res) => {
+export const updateBook = async (req, res) => {
   try {
-    const [name, age, cpf] = req.body;
+    const [title, author, year_published, language, pages] = req.body;
     const [result] = await db.query(
-      "UPDATE users SET name = ?, age = ?, cpf = ? WHERE id = ?",
-      [name, age, cpf, req.params.id],
+      "UPDATE books SET title = ?, author = ?, year_published = ?, language = ?, pages = ?",
+      [title, author, year_published, language, pages],
     );
-    return res.status(200).json({ id: result.insertId, name, age, cpf });
+    return res.status(200).json({
+      id: result.insertId,
+      title,
+      author,
+      year_published,
+      language,
+      pages,
+    });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteBook = async (req, res) => {
   try {
-    const [result] = await db.query("DELETE FROM users WHERE id = ?", [
+    const [result] = await db.query("DELETE FROM books WHERE id = ?", [
       req.params.id,
     ]);
     if (result.affectedRows === 0) {
