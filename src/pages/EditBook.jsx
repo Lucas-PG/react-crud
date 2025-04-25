@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "styles/EditBook.css";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getBookById, updateBook } from "api/booksAPI";
+import { useToast } from "hooks/useToast";
 
 const EditBook = () => {
   const { id } = useParams();
@@ -13,6 +14,7 @@ const EditBook = () => {
     language: "",
     pages: "",
   });
+  const [Toast, showToast] = useToast();
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -20,7 +22,7 @@ const EditBook = () => {
         const data = await getBookById(id);
         setForm(data);
       } catch (err) {
-        alert("Erro ao carregar livro para edição.");
+        showToast("Erro ao carregar livro para edição");
       }
     };
     fetchBook();
@@ -32,85 +34,101 @@ const EditBook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !form.title ||
+      !form.author ||
+      !form.year_published ||
+      !form.language ||
+      !form.pages
+    ) {
+      showToast("Todos os campos são obrigatórios.");
+      return;
+    }
+
+    if (form.pages <= 0) {
+      showToast("O número de páginas deve ser positivo.");
+      return;
+    }
+
     try {
       await updateBook(id, form);
       navigate("/");
     } catch (err) {
-      alert("Erro ao salvar alterações.");
-      console.log(err.message);
+      showToast("Erro ao salvar alterações.");
     }
   };
 
   return (
-    <div className="edit-body">
-      <div className="edit-book-container">
-        <div className="edit-book-header">
-          <h2>Editar Livro</h2>
-        </div>
-        <form onSubmit={handleSubmit} className="edit-book-form">
-          <label>
-            Título:
-            <input
-              type="text"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-              required
-              placeholder={form.title}
-            />
-          </label>
-          <label>
-            Autor:
-            <input
-              type="text"
-              name="author"
-              value={form.author}
-              onChange={handleChange}
-              required
-              placeholder={form.author}
-            />
-          </label>
-          <label>
-            Ano de Publicação:
-            <input
-              type="number"
-              name="year_published"
-              value={form.year_published}
-              onChange={handleChange}
-              placeholder={form.year_published}
-            />
-          </label>
-          <label>
-            Língua:
-            <input
-              type="text"
-              name="language"
-              value={form.language}
-              onChange={handleChange}
-              placeholder={form.language}
-            />
-          </label>
-          <label>
-            Número de Páginas:
-            <input
-              type="number"
-              name="pages"
-              value={form.pages}
-              onChange={handleChange}
-              placeholder={form.pages}
-            />
-          </label>
-          <div className="edit-buttons">
-            <Link to="/" className="back-button">
-              Voltar
-            </Link>
-            <button type="submit" className="save-button">
-              Salvar
-            </button>
+    <>
+      <Toast />
+      <div className="edit-body">
+        <div className="edit-book-container">
+          <div className="edit-book-header">
+            <h2>Editar Livro</h2>
           </div>
-        </form>
+          <form onSubmit={handleSubmit} className="edit-book-form">
+            <label>
+              Título:
+              <input
+                type="text"
+                name="title"
+                value={form.title}
+                onChange={handleChange}
+                placeholder={form.title}
+              />
+            </label>
+            <label>
+              Autor:
+              <input
+                type="text"
+                name="author"
+                value={form.author}
+                onChange={handleChange}
+                placeholder={form.author}
+              />
+            </label>
+            <label>
+              Ano de Publicação:
+              <input
+                type="number"
+                name="year_published"
+                value={form.year_published}
+                onChange={handleChange}
+                placeholder={form.year_published}
+              />
+            </label>
+            <label>
+              Língua:
+              <input
+                type="text"
+                name="language"
+                value={form.language}
+                onChange={handleChange}
+                placeholder={form.language}
+              />
+            </label>
+            <label>
+              Número de Páginas:
+              <input
+                type="number"
+                name="pages"
+                value={form.pages}
+                onChange={handleChange}
+                placeholder={form.pages}
+              />
+            </label>
+            <div className="edit-buttons">
+              <Link to="/" className="back-button">
+                Voltar
+              </Link>
+              <button type="submit" className="save-button">
+                Salvar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

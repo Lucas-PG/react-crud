@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { getBooks, deleteBook } from "api/booksAPI";
 import { BookRow } from "components/BookRow";
 import "styles/ListBooks.css";
+import { useToast } from "hooks/useToast";
 
 const ListBooks = () => {
   const [books, setBooks] = useState([]);
+  const [Toast, showToast] = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,8 +26,7 @@ const ListBooks = () => {
       await deleteBook(id);
       setBooks(books.filter((book) => book.id !== id));
     } catch {
-      // TODO: Colocar em popup
-      alert("Erro ao excluir livro.");
+      showToast("Erro ao deletar o livro.");
     }
   };
   return (
