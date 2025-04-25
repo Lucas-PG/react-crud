@@ -31,10 +31,10 @@ export const addBook = async (req, res) => {
 
 export const updateBook = async (req, res) => {
   try {
-    const [title, author, year_published, language, pages] = req.body;
+    const { title, author, year_published, language, pages } = req.body;
     const [result] = await db.query(
-      "UPDATE books SET title = ?, author = ?, year_published = ?, language = ?, pages = ?",
-      [title, author, year_published, language, pages],
+      "UPDATE books SET title = ?, author = ?, year_published = ?, language = ?, pages = ? WHERE id = ?",
+      [title, author, year_published, language, pages, req.params.id],
     );
     return res.status(200).json({
       id: result.insertId,
