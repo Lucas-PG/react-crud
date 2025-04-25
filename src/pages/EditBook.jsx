@@ -74,7 +74,6 @@ const EditBook = () => {
                 name="title"
                 value={form.title}
                 onChange={handleChange}
-                placeholder={form.title}
               />
             </label>
             <label>
@@ -84,7 +83,6 @@ const EditBook = () => {
                 name="author"
                 value={form.author}
                 onChange={handleChange}
-                placeholder={form.author}
               />
             </label>
             <label>
@@ -94,7 +92,6 @@ const EditBook = () => {
                 name="year_published"
                 value={form.year_published}
                 onChange={handleChange}
-                placeholder={form.year_published}
               />
             </label>
             <label>
@@ -104,7 +101,6 @@ const EditBook = () => {
                 name="language"
                 value={form.language}
                 onChange={handleChange}
-                placeholder={form.language}
               />
             </label>
             <label>
@@ -114,7 +110,6 @@ const EditBook = () => {
                 name="pages"
                 value={form.pages}
                 onChange={handleChange}
-                placeholder={form.pages}
               />
             </label>
             <div className="edit-buttons">
