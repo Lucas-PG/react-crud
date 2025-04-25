@@ -29,7 +29,7 @@ const ListBooks = () => {
     }
   };
   return (
-    <>
+    <div className="list-body">
       <div className="gif-div">
         <img
           src="/spirited-away.gif"
@@ -81,7 +81,7 @@ const ListBooks = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

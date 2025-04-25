@@ -12,7 +12,7 @@ export const BookRow = ({ book, onEdit, onDelete }) => {
       <div>{book.language}</div>
       <div>{book.pages}</div>
       <div className="action-buttons">
-        <Link to={`/books/${book.id}`} className="icon-btn" title="Visualizar">
+        <Link to={`/view/${book.id}`} className="icon-btn" title="Visualizar">
           <FaEye />
         </Link>
         <button
