@@ -10,7 +10,7 @@ export const getBooks = async () => {
 };
 
 export const addBook = async (book) => {
-  const response = await api.post("/books", book);
+  const response = await api.post("/", book);
   return response.data;
 };
 
