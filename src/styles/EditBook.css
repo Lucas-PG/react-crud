@@ -1,0 +1,84 @@
+.edit-body {
+  max-height: 100vh;
+  height: 100vh;
+  padding: 0px;
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Times New Roman", Times, serif;
+  overflow-x: hidden;
+  background-color: #b5bbd8;
+}
+
+.edit-book-container {
+  background-color: #fffcf5;
+  width: 35vw;
+  padding: 2rem;
+  border-radius: 14px;
+}
+
+.edit-book-header {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #3b2f2f;
+}
+
+.edit-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.edit-book-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #5c4434;
+}
+
+.edit-book-form input {
+  margin-top: 0.4rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #d7ccc0;
+  border-radius: 8px;
+  background-color: #fffdf9;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.save-button {
+  background-color: green;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #388e3c;
+}
+
+.back-button {
+  text-decoration: none;
+  color: #204d63;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  background-color: #792b00;
+  transition: 0.3s;
+}
+
+.back-button:hover {
+  background-color: #dfeff2;
+}

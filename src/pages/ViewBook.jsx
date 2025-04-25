@@ -49,7 +49,7 @@ const ViewBook = () => {
         </div>
 
         <Link to="/" className="back-button">
-          ← Voltar
+          Voltar
         </Link>
       </div>
     </div>

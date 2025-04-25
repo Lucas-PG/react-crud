@@ -81,3 +81,25 @@
   flex-direction: column;
   gap: 2px;
 }
+
+.add-book-div {
+  width: 100%;
+  height: 5vh;
+  margin-top: 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-book-btn {
+  text-decoration: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  background-color: #792b00;
+  transition: 0.3s;
+}
+
+.add-book-btn:hover {
+  background-color: #a93d0d;
+}

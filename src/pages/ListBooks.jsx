@@ -80,6 +80,11 @@ const ListBooks = () => {
             </div>
           </div>
         )}
+        <div className="add-book-div">
+          <Link to="/add" className="add-book-btn">
+            Cadastrar Livro
+          </Link>
+        </div>
       </div>
     </div>
   );
